@@ -33,8 +33,8 @@ public class ArrayStackTest {
         arrayStack.push("B");
 
         assertEquals(2, arrayStack.size());
-        assertEquals("B", arrayStack.pop());
-        assertEquals("B", arrayStack.pop());
+        assertEquals("B", arrayStack.peek());
+        assertEquals("B", arrayStack.peek());
         assertEquals(2, arrayStack.size());
     }
 
@@ -92,7 +92,7 @@ public class ArrayStackTest {
     Assertions.assertThrows(IllegalStateException.class, () -> {
         arrayStack.pop();
     });
-
-
 }
+
+
 }
