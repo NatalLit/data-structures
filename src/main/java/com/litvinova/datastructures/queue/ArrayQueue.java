@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class ArrayQueue implements Queue {
     private int size;
-    private int count;
     private Object[] array;
 
     ArrayQueue() {
@@ -30,8 +29,10 @@ public class ArrayQueue implements Queue {
         if (isEmpty()) {
             throw new IllegalStateException("Queue is empty!");
         }
-        Object result = array[count];
-        count++;
+        Object result = array[0];
+        for (int i = 0; i < size - 1; i++) {
+            array[i] = array[i + 1];
+        }
         size--;
 
         return result;
@@ -39,7 +40,10 @@ public class ArrayQueue implements Queue {
 
     @Override
     public Object peek() {
-        return array[count];
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is empty!");
+        }
+        return array[0];
     }
 
     @Override
@@ -55,6 +59,9 @@ public class ArrayQueue implements Queue {
     @Override
     public boolean contains(Object value) {
         for (int i = 0; i < size; i++) {
+            if (array[i] == null){
+                throw new NullPointerException();
+            }
             Object valueInQueue = array[i];
             if (value.equals(valueInQueue)) {
                 return true;
@@ -65,28 +72,30 @@ public class ArrayQueue implements Queue {
 
     @Override
     public void clear() {
+        for (int i = 0; i < size; i++) {
+            array[i] = null;
+        }
         size = 0;
 
     }
 
+
     @Override
     public String toString() {
-        int count = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != null) {
-                count++;
-            }
-        }
-        Object[] newArray = new Object[count];
-        count = 0;
-        for (int i = 0; i < array.length; i++) {
+        StringBuilder stringBuilder = new StringBuilder();
 
-            if (array[i] != null) {
-                newArray[count] = array[i];
-                count++;
+        for (int i = 0; i < size; i++) {
+
+            if (array[i] != null && i!= size-1) {
+                stringBuilder.append(array[i] + ", ");
+
+            } else {
+                stringBuilder.append(array[i]);
             }
+
         }
-        return Arrays.toString(newArray);
+        return  "[" + stringBuilder.toString() + "]" ;
+
     }
 }
 

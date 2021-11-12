@@ -9,15 +9,15 @@ package com.litvinova.datastructures.queue;
 //    //[A,B,C] if size =3
 //    String toString();
 
-import com.litvinova.datastructures.stack.ArrayStack;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ArrayQueueTest {
-
+@DisplayName("test enqueue ans dequeue work correctly")
     @Test
     public void testEnqueueAndDequeueWorkCorrectlyAndChangeSize() {
         ArrayQueue arrayQueue = new ArrayQueue();
@@ -31,7 +31,7 @@ public class ArrayQueueTest {
 
         assertTrue(arrayQueue.isEmpty());
     }
-
+    @DisplayName("test peek work correctly")
     @Test
     public void testPeekWorkCorrectly() {
         ArrayQueue arrayQueue = new ArrayQueue();
@@ -44,20 +44,20 @@ public class ArrayQueueTest {
         Assertions.assertEquals(2, arrayQueue.size());
 
     }
-
+    @DisplayName("test isEmpty work correctly with new Queue")
     @Test
     public void testIsEmptyReturnTrueOnNewQueue() {
         ArrayQueue arrayQueue = new ArrayQueue();
         assertTrue(arrayQueue.isEmpty());
     }
-
+    @DisplayName("test isEmpty work correctly when Queue has data")
     @Test
     public void testIsEmptyReturnFalseOnQueueWithData() {
         ArrayQueue arrayQueue = new ArrayQueue();
         arrayQueue.enqueue("A");
         assertFalse(arrayQueue.isEmpty());
     }
-
+    @DisplayName("test isEmpty return true after clear")
     @Test
     public void testIsEmptyReturnTrueOnQueueAfterClear() {
         ArrayQueue arrayQueue = new ArrayQueue();
@@ -68,7 +68,7 @@ public class ArrayQueueTest {
 
         assertTrue(arrayQueue.isEmpty());
     }
-
+    @DisplayName("test contains return true when element exist")
     @Test
     public void testContainsReturnTrue() {
         ArrayQueue arrayQueue = new ArrayQueue();
@@ -77,7 +77,7 @@ public class ArrayQueueTest {
 
         assertTrue(arrayQueue.contains("A"));
     }
-
+    @DisplayName("test contains return false on non-existent element")
     @Test
     public void testContainsReturnFalse() {
         ArrayQueue arrayQueue = new ArrayQueue();
@@ -86,9 +86,9 @@ public class ArrayQueueTest {
 
         assertFalse(arrayQueue.contains("C"));
     }
-
+    @DisplayName("test contains return false on queue without data")
     @Test
-    public void testContainsReturnFalseOnEmptyStack() {
+    public void testContainsReturnFalseOnEmptyQueue() {
         ArrayQueue arrayQueue = new ArrayQueue();
 
         assertFalse(arrayQueue.contains("A"));
@@ -101,7 +101,7 @@ public class ArrayQueueTest {
             arrayQueue.dequeue();
         });
     }
-
+    @DisplayName("test to String work correctly ")
     @Test
     public void testToStringWorkCorrectly() {
         ArrayQueue arrayQueue = new ArrayQueue();
