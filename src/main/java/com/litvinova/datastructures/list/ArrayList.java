@@ -27,53 +27,37 @@ public class ArrayList implements List {
             array[size] = value;
             size++;
         } else {
-            for (int i = size - 1; i >= index; i--) {
-                array[i + 1] = array[i];
-            }
+            System.arraycopy(array, index, array, index + 1, size - index);
             size++;
         }
         array[index] = value;
     }
 
 
-    private void grow() {
-        Object[] newArray = new Object[(int) (array.length * 1.5)];
-        System.arraycopy(array, 0, newArray, 0, array.length);
-        array = newArray;
-    }
-
 
     @Override
     public Object remove(int index) {
-        if (index > size - 1 || index < 0) {
-            throw new IndexOutOfBoundsException("invalid index");
-        } else {
-            Object removedValue = array[index];
-            if (size - index >= 0) System.arraycopy(array, index + 1, array, index, size - index);
-            size--;
-            return removedValue;
-        }
+        checkIndex(index);
+        Object removedValue = array[index];
+        if (size - index >= 0) System.arraycopy(array, index + 1, array, index, size - index);
+        size--;
+        return removedValue;
+
 
     }
 
     @Override
     public Object get(int index) {
-        if (index > size - 1 || index < 0) {
-            throw new IndexOutOfBoundsException("invalid index");
-        } else {
-            return array[index];
-        }
+        checkIndex(index);
+        return array[index];
     }
 
     @Override
     public Object set(Object value, int index) {
-        if (index > size - 1 || index < 0) {
-            throw new IndexOutOfBoundsException("invalid index");
-        } else {
+        checkIndex(index);
             Object previousValue = array[index];
             array[index] = value;
             return previousValue;
-        }
     }
 
     @Override
@@ -127,15 +111,29 @@ public class ArrayList implements List {
         return -1;
     }
 
+
+    private void checkIndex(int index) {
+        if (index > size - 1 || index < 0) {
+            throw new IndexOutOfBoundsException("invalid index");
+        }
+    }
+
+
     @Override
     public String toString() {
-        StringJoiner stringJoiner = new StringJoiner(",","[","]");
+        StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
 
         for (int i = 0; i < size; i++) {
             stringJoiner.add(array[i].toString());
         }
         return stringJoiner.toString();
 
+    }
+
+    private void grow() {
+        Object[] newArray = new Object[(int) (array.length * 1.5)];
+        System.arraycopy(array, 0, newArray, 0, array.length);
+        array = newArray;
     }
 
 

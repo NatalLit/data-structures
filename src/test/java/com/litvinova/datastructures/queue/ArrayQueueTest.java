@@ -1,13 +1,4 @@
 package com.litvinova.datastructures.queue;
-//    void enqueue (Object value);
-//    Object dequeue();
-//    Object peek();
-//    int size();
-//    boolean isEmpty();
-//    boolean contains (Object value);
-//    void clear();
-//    //[A,B,C] if size =3
-//    String toString();
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
